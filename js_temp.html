@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+
+<body>
+
+<h3 class="xxx">Заглушка</h3>
+
+<script>
+'use strict'
+// 18 мне уже 2
+let age = prompt('Сколько лет?', 18);
+// ? - тернарный оператор выбора
+let setAccess = (age < 18) ?
+    function() {console.log('Доступ запрещен');}:
+    function() {console.log('Доступ - можно :)');};
+
+setAccess();
+</script>
+</body>
+</html>
