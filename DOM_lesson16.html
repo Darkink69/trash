@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+      
+</style>
+<body>
+    <form name="reg">
+        <p><input name="user" value='text'></p>
+        <p><input name="sex" type='radio' checked>Male
+            <input name="sex" type='radio' >Female</p>
+        <p>City
+            <select name="city">
+                <option>Moscow</option>
+                <option>Piter</option>
+                <option>Novosibirsk</option>
+            </select>
+
+            <select name="city2" multiple>
+                <option>Moscow</option>
+                <option>Piter</option>
+                <option>Novosibirsk</option>
+            </select>
+        </p>
+        <fieldset name="info"></fieldset>
+        <p>I agree <input name='agree' type='checkbox'/></p>
+        <p><textarea name='about' rows='10' cols='30'>About me</textarea></p>
+        <p><input type="submit" name="submit"></p>    
+    </form>
+   
+    <script>
+        let frm = document.forms.reg;
+        let user = frm.elements.user;
+        console.log(user);
+        // сокращенная запись
+        console.log(frm.sex[0]);
+        // получаем значения введеных полей
+        let city = frm.city;
+        // Заменим Москву
+        city.value = 'Novosibirsk'
+        
+        let agree = frm.agree;
+        let about = frm.about;
+        console.log(user.value, about.value);
+        // список городов
+        console.dir(city.options[0].text);
+
+        // выбор нескольких элементов
+        let city2 = frm.city2;
+        city2.options[1].selected = true;
+        city2.options[2].selected = true;
+
+        let selected = Array.from(city2.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+
+        for(let c of selected)
+            console.log(c);    
+
+    </script>
+
+
+</body>
+</html>       

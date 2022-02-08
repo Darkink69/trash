@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+      
+</style>
+<body>
+    <input id="inp" style='position: fixed' onkeydown="keyHandler(event)" onkeyup="keyHandler(event)">
+    <ul style="font-size: 20px;">
+        <li>125414858721684712563</li><li>125414858721684712563</li>
+        <li>125414858721684712563</li><li>125414858721684712563</li>
+        <li>125414858721684712563</li><li>125414858721684712563</li>
+        <li>125414858721684712563</li><li>125414858721684712563</li>
+        <li>125414858721684712563</li><li>125414858721684712563</li>
+    </ul>
+   
+    <script>
+        // обработка нажатия клавиши
+        function keyHandler(event) {
+            console.log(event.type);
+            // автоповтор нажатия
+            console.log('автоповтор - ' + event.repeat);
+        // код клавиши и код символа
+            console.log('клавиша - ' + event.key, 'код - ' + event.code);
+        }
+
+        // выводим координаты скролла прямо в то же окно 
+        window.addEventListener('scroll', function(event) {
+            inp.value = pageYOffset;
+        });        
+    
+    </script>
+
+
+</body>
+</html>       

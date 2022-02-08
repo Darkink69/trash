@@ -1,0 +1,26 @@
+.load_game {
+    background: #293f58;
+}
+
+.load_data {
+    z-index: 999;
+    width: 400px;
+    text-align: left;
+    font-size: 26px;
+    font-weight: normal;
+    color: #fffbd2;
+    margin: 50px auto 0 auto;
+}
+
+.progress {
+    width: 300px;
+    height: 20px;
+    margin: 5px 0 5 px 0;
+    background: #202020;
+}
+
+.progress .value {
+    width: 0%;
+    height: 100%;
+    background: #7474ff;
+}

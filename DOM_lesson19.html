@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+     
+</style>
+<body>
+<p><img id="image" src='C:\Users\varkatov\imageAI\in\toony_out1.jpg?nocashe=1'></p>
+   
+    <script>
+        // метод определяющий загрузку скелета, без наполнения
+        document.addEventListener('DOMContentLoaded', ready);
+
+        function ready(event) {
+            console.log('DOMContentLoaded - скелет страницы загружен')
+            //console.log(`Картинка: ${image.offsetWidth} x ${image.offsetHeight}`);
+        }
+
+        // определяет, когда загружено уже все остальное
+        window.onload = function(event) {
+            console.log('Load - совсем все загружено')
+            //console.log(`Картинка: ${image.offsetWidth} x ${image.offsetHeight}`);
+        }
+
+        window.addEventListener('unload', function() {
+            console.log('Определяет выгрузку страницы')
+        })
+
+        //отправка на сервер методом POST. Работает даже если страница уже закрытаа
+        // пример. нужно еще разбираться
+        window.addEventListener('unload', function() {
+            navigator.sendBeacon('/analytic.php', JSON.stringify(myData));
+        });
+
+        //отслеживает попытку перегрузить страницу страницы
+        window.onbeforeunload = function() {
+            return false;
+        };
+
+        // отслеживаем состояние загрузки страницы (есть 3 состояния)
+        // для прикола удаляем фотку
+        removeImage();
+        function removeImage() {
+            if(document.readyState == 'loading') {
+                console.log('документ пока грузиться');
+                document.addEventListener('DOMContentLoaded', removeImage);
+                console.log(document.readyState);
+            }
+        }
+
+        document.body.remove(image);
+    </script>
+
+
+</body>
+</html>       

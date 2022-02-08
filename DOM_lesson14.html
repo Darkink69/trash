@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+   .parent {background: #cc4444; 
+            padding: 10px 0 10px 10px;
+            display: inline-block;
+            width: 100px;
+            }
+
+    .child {
+        background: #00CC00;
+        padding: 10px;
+    }        
+</style>
+<body>
+   <div class='parent'>ДИВ
+       <p class="child">ПЭ</p>
+   </div>
+   
+    <script>
+        // события мыши и клавиатуры
+        document.addEventListener('click',
+            (event) => {
+                if(event.shiftKey && event.ctrlKey)
+                console.log('ctrl + shift + click');
+        });  
+        
+        // определения координат мыши
+        document.addEventListener('mousemove', 
+        (event) => console.log(event.clientX, event.clientY));
+    
+        // определяем что мышь поверх объекта без всплытия событий (есть со всплытием методы)
+        let div = document.querySelector('div.parent');
+        div.addEventListener('mouseenter', showInfo);
+
+        function showInfo(event) {
+            let prop = 'Цель - ' + event.target.tagName;
+            if(event.relatedTarget != null)
+                prop+=', relatedTarget = ' + event.relatedTarget.tagName;
+            
+            let name = event.currentTarget.tagName;
+            console.log(name + ' маус интер ' + prop);    
+        }
+    
+    </script>
+
+
+</body>
+</html>       

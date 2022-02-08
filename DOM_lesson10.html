@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+    .text {
+        z-index: 999;
+        position: fixed;
+        height: 250px;
+        padding: 20px;
+        width: 300px;
+
+        top: 100px;
+        background: #d3fdf6;
+        opacity: 90%;
+
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 150%;
+        /* or 36px */
+
+        text-align: center;
+
+        
+        
+}
+</style>
+<body>
+    <div class="block">
+        <h1 id='header1'>Заголовок</h1>
+        <ul >
+            <li>Какое-то слова Какое-то слова Какое-то слова Какое-то слова </li><li>Какое-то словo</li>
+            <li>Какое-то слова Какое-то слова Какое-то слова Какое-то слова </li><li>Какое-то словo</li>
+            <li>Какое-то слова</li><li>Какое-то словo</li>
+            <li>Какое-то слова</li><li>Какое-то словo</li>
+            <li>Какое-то слова</li><li>Какое-то словo</li>
+            <li>Какое-то слова</li><li>Какое-то словo</li>
+            <li>Какое-то слова</li><li>Какое-то словo</li>
+        </ul>
+    </div>
+    <span class="text" id='text'>Форма заказа будет реализована позднее. Если вы знаете номенклатуру интересующих вас листов карт, пожалуйста, обратитесь к нам по адресу: support@dataeast.com
+    </span>
+
+   
+    
+    <script>
+        //Ставим наш блок див точно по центру окна
+        let text = document.getElementById('text');
+        let centerX = document.documentElement.clientWidth / 2;
+        let centerY = document.documentElement.clientHeight / 2;
+        text.style.left = centerX - text.offsetWidth / 2 + 'px';
+        text.style.top = centerY - text.offsetHeight / 2 + 'px';
+    
+        // Узнать все координаты элемента
+        let coords = text.getBoundingClientRect();
+        console.log(coords.x);
+
+        //узнаем какой элемент по этим координатам
+        let elem = document.elementFromPoint(100, 200);
+        console.log(elem);
+
+    </script>
+
+
+</body>
+</html>       

@@ -1,0 +1,121 @@
+<html>
+<head>
+    <title id="title">Все меняем!</title>
+
+</head>
+
+<body>
+    <style>
+        .alert {
+          padding: 15px;
+          border: 1px solid #d6e9c6;
+          border-radius: 4px;
+          color: #3c763d;
+          background-color: #dff0d8;
+        }
+    </style>
+        
+    <div class="alert" id="first">
+          <strong>Всем привет!</strong> Вы прочитали важное сообщение.
+    </div>
+
+    <ol id="ol">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+    </ol>
+
+    <div id="div"></div>
+
+    <ul id="ul"></ul>
+
+    <ol id="elem3">
+        <li>Привет</li>
+        <li>Мир</li>
+    </ol>
+      
+
+
+    <script>
+        // Создаем новый элемент с тегом, каким нам надо
+        let div = document.createElement('div');
+        div.className = "alert";
+        div.innerHTML = "<strong>Всем пока!</strong> Сообщений больше нет.";
+        console.log(div.className);
+
+        // Созданим новый текстовый узел, текст наш
+        let textNode = document.createTextNode('А вот и я');
+        console.log(textNode);
+
+        // Вставляем наш див на страницу
+        document.body.prepend(div);
+
+
+        // Вставляем "до, после" и т.д.
+        ol.before('перед');
+        ol.after('после');
+        let liFirst = document.createElement('li');
+        liFirst.innerHTML = 'Поставить первым в список';
+        ol.prepend(liFirst);
+        let liLast = document.createElement('li');
+        liLast.innerHTML = 'Поставить последним в список';
+        ol.append(liLast);
+
+        // вставка сразу двух элементов (но Хай как текст)
+        div.after('<p>Hi!</p>', document.createElement('hr'));
+        // вставка не как текст, а как тег, сперва указание места
+        div.insertAdjacentHTML('afterend', '<p>Привет</p>');
+
+        // Все в одну строку, вставляем только с помощью кода!
+        document.body.insertAdjacentHTML("beforeend", `<div class="alert" id='second'>
+        <strong>Это вставка текста</strong> сделана в одну строку!</div>`);
+        document.body.insertAdjacentHTML('beforebegin', `<div>Еще одна вставка!</div>`)
+        
+        // Удаляем элемент со страницы через секунду (отсчет сразу параллельно!)
+        // setTimeout(() => second.remove(), 1000);
+        // setTimeout(() => ol.remove(), 2000);
+
+        //меняем местами элементы (по id)
+        setTimeout( () => second.after(first), 1000);
+
+        // Клонирование элемента и потом изменение
+        let ol2 = ol.cloneNode(true); // клонирование "глубокое" с дочерними
+        ol2.querySelector('#ol > li:nth-child(3)').innerHTML = 'One, two';
+        ol.after(ol2); // вставляем после
+
+        // Генерация списка li с помощью функции "обертка" списка
+        // function getListContent() {
+        //     let fragment = new DocumentFragment(); // используется не часто
+
+        //     for(let i=1; i<=3; i++) {
+        //         let li = document.createElement('li');
+        //         // answer = prompt();
+        //         // li.append(answer);
+        //         fragment.append(li);
+        //     }
+
+        //     return fragment;
+        // }
+
+        // ul.append(getListContent()); // (*)
+
+
+        function clear(elem3) {
+            // elem3.remove(); // неправильно. Я удалил весь ol
+            elem3.innerHTML = ''; // так правильно, сам элемент ol остался, но стерты все li
+        }
+      
+        clear(elem3); // очищает список
+        console.log(elem3);
+
+
+
+       
+
+    </script>
+
+
+
+</body>
+
+</html>

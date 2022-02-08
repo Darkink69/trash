@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+    <link type='text/css' rel="stylesheet" href="styles.css">
+    <script type='text/javascript' src="ex1.js"></script>
+</head>
+<body>
+    <div id="load_game" class="load_data" style="background-color: #0084ff;">
+        Загрузка...
+        <div class="progress"><div id="load_status" class="value"></div></div>
+    </div>
+      
+    <script>
+        // Предзагрузка картинок. Не доделано...
+        let loader = null;
+        document.body.onload = ready;
+
+        function ready(event) {
+            loader = new LoadingImages();
+            loader.addItem('C:/Users/varkatov/imageAI/in/toony_out1.jpg');
+            loader.addItem('C:/Users/varkatov/imageAI/in/toony_out2.jpg');
+            loader.addItem('C:/Users/varkatov/imageAI/in/toony_out2.jpg');
+
+            let progress = document.getElementById('load_status');
+            let nTotal = loader.getTotalItems();
+            let nCount = 0;
+            loader.load(function() {
+                nCount++;
+                progress.style.width = nCount/nTotal*100 + '%';
+                console.log(nCount);
+            })
+        }
+
+    </script>
+
+
+</body>
+</html>       

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+    body {background: #383a3a; font-size: 20px;}
+        #first {background: #cc4444; width: 100px; padding: 10px}
+        #second {background: #00cccc; padding: 10px}
+        #third {background: #4444cc; padding: 0 10px 0 5px;}
+   
+</style>
+<body>
+    <div id ='first' onclick="showTag(event)">Див!
+        <p id='second' onclick="showTag(event)">ПЭ!
+            <span id='third' onclick="showTag(event)">Спан!</span>
+        </p>
+
+    </div>
+   
+    <script>
+        //обработчики событий на погружение и всплытие (где-то ошибка, не работает)
+        first.addEventListener('click', showTag, true)
+        second.addEventListener('click', showTag, true)
+        third.addEventListener('click', showTag, true)
+
+        function showTag(event) {
+            console.log(event.eventPhase + ': ' +
+                event.currentTarget.TagName +
+                ' от ' + event.target.TagName);
+            // останавливает всплытие событий от дочернего к родительскому    
+            event.stopPropagation();
+        }
+      
+
+    </script>
+
+
+</body>
+</html>       

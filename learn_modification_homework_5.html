@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+    <style>
+        .alert {
+          padding: 15px;
+          border: 1px solid #d6e9c6;
+          border-radius: 4px;
+          color: #3c763d;
+          background-color: #dff0d8;
+        }
+    </style>
+  <h1>Создать список</h1>
+  <!-- тут -->
+  <div id="container" class="alert"></div>
+
+  <ul>
+    <li>Животные
+      <ul>
+        <li>Млекопитающие
+          <ul>
+            <li>Коровы</li>
+            <li>Ослы</li>
+            <li>Собаки</li>
+            <li>Тигры</li>
+          </ul>
+        </li>
+        <li>Другие
+          <ul>
+            <li>Змеи</li>
+            <li>Птицы</li>
+            <li>Ящерицы</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Рыбы
+      <ul>
+        <li>Аквариумные
+          <ul>
+            <li>Гуппи</li>
+            <li>Скалярии</li>
+          </ul>
+        </li>
+        <li>Морские
+          <ul>
+            <li>Морская форель</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+
+
+  <script>
+     // создадим список с ввода промт пока не нажмем esc  
+    // let ul = document.createElement('ol');
+    // document.body.append(ul);
+    // let myList = [];
+
+    // while (true) {
+    //   let data = prompt("Введите текст для элемента списка", "");
+
+    //   if (!data) {
+    //     break;
+    //   }
+
+    //   let li = document.createElement('li');
+    //   li.textContent = data;
+      
+    //   myList.push(data);
+    //   console.log(myList);
+    //   container.append(li);
+    // }
+    // console.log(myList);
+    // setTimeout(() => container.remove(), 2000);
+
+
+    // Создадим дерево ul/il из объекта
+    // let data = {
+    //     "Рыбы": {
+    //         "форель": {},
+    //         "лосось": {}
+    //     },
+
+    //     "Деревья": {
+    //         "Огромные": {
+    //         "секвойя": {},
+    //         "дуб": {}
+    //         },
+    //         "Цветковые": {
+    //         "яблоня": {},
+    //         "магнолия": {}
+    //         }
+    //     }
+    // };
+
+    // let myData = {
+    //     'пиво': 'жигулевское',
+    //     'водка' : 'русская'
+    // }
+
+    // console.log(myData['пиво']);
+
+    
+    // let ul = document.createElement('ul');
+    // ul.innerHTML = myData['пиво'];
+    // container.append(ul);
+    // let li = document.createElement('li');
+    // li.innerHTML = myData['пиво'];
+    // ul.append(li);
+    // let ul2 = document.createElement('ul');
+    // ul.append(ul2);
+
+
+
+    // let li2 = document.createElement('li');
+    // li2.innerHTML = myData['водка'];
+    // ul2.append(li2);
+    // let li3 = document.createElement('li');
+    // li3.innerHTML = myData['пиво'];
+    // li2.append(li3);
+    // li.insertAdjacentHTML("afterbegin", `<div class="alert">
+    //     <strong>Это вставка текста</strong> сделана в одну строку!</div>`);
+    // container.append(ul);
+
+
+
+
+
+    // function createTree (container, obj) {
+    //     container.append(createTreeDom(obj));
+    // }
+
+    // function createTreeDom (obj) {    
+    // // если нет дочерних элементов, возвращает неопределено и не будет создан ul
+    //     if (!Object.keys(obj).length) return;
+    //     // console.log(obj);
+
+    //     let ul = document.createElement('ul');
+
+    //     for (let key in obj) {
+    //         let li = document.createElement('li');
+    //         li.innerHTML = key;
+    //         // console.log(key);
+
+    //         let childrenUl = createTreeDom(obj[key]);
+            
+    //         if (childrenUl) {
+    //             li.append(childrenUl);
+    //             // console.log(childrenUl);
+    //         }
+
+    //         ul.append(li);
+    //     }
+    //     console.log(ul);
+    //     return ul;
+        
+    // }
+
+
+
+
+
+    // let container = document.getElementById('container');
+    // createTree(container, data); // создаёт дерево в контейнере
+    // console.log(createTree);
+    // console.log(Data['Рыбы']);
+
+
+    let lis = document.getElementsByTagName('li');
+    lis[4].firstChild.data = '!!!!!!!!!!!!!!!!!!!!!';
+
+    for (let li of lis) {
+      let descendantsCount = li.getElementsByTagName('li').length;
+      // console.log(descendantsCount);
+      if (!descendantsCount) continue;
+
+      
+      li.firstChild.data += ' (' + descendantsCount + ')';
+      
+    }
+    
+
+
+  </script>
+
+</body>
+</html>

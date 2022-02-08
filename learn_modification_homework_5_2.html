@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+</head>
+<body>
+    <style>
+        .alert {
+          padding: 15px;
+          border: 1px solid #d6e9c6;
+          border-color: azure;
+          border-radius: 10px;
+          color: #3c763d;
+          background-color: #dff0d8;
+        }
+
+        .timer {
+            padding: 20px;
+            background-color: rgb(205, 247, 241);
+            font-size: xx-large;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            
+        }
+
+        .hour {
+            color: red
+        
+        }
+
+        .min {
+            color: green
+        }
+
+        .sec {
+            color: blue
+        }
+        
+    </style>
+
+    <div id="name" class="timer">Сегодня:</div>
+    <table id="table" class="alert" align="center" cellpadding = '5'></table>
+    <div id="clock" class="timer">
+        <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec">ss</span>
+    </div>
+
+    <div id="botton" align="center" class="alert">
+      <!-- клик по этой кнопке вызовет clockStart() -->
+      <input class="sec" type="button" onclick="clockStart()" value="Вкл">
+
+      <!-- клик по этой кнопке вызовет clockStop() -->
+      <input type="button" onclick="clockStop()" value="Выкл">
+    </div>  
+  <script>
+
+    function createCalendar(year, month) {
+
+        // 
+        let date = new Date(year, month - 1, 1).getDay();  // 
+        let daysInMonth = new Date(year, month, 0).getDate(); // Определяем сколько дней в этом месяце
+
+        // Создаем массив с днями месяца, с начала добавляем пустые дни, чтобы начать с нужного дня недели
+        let days = [];
+        for (let i = 1; i < date; i++) {
+            days.push('');
+        }
+
+        for (let i = 1; i <= daysInMonth; i++) {
+            days.push(i);
+        }
+
+        let week = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+        let DayOfMounth = []
+
+        for (day of week) {
+            let th = document.createElement('th');
+            th.innerHTML = day;
+            table.append(th);
+        }       
+
+        for (let i = 1; i <= 5; i++) {
+            let tr = document.createElement('tr');
+            table.append(tr);
+
+            for (let j = 1; j <= 7; j++) {
+                let td = document.createElement('td');
+                if (days != 0) {
+                    td.innerHTML = days[0];
+                    days.shift();
+                    tr.append(td);
+                }
+            }
+        }
+    }    
+
+    createCalendar(2021, 12);
+
+    // часы
+
+    function update() {
+        let date = new Date();
+        let clock = document.getElementById('clock');
+
+        let hours = date.getHours();
+        if (hours < 10) hours = '0' + hours;
+        clock.children[0].innerHTML = hours;
+
+        let minutes = date.getMinutes();
+        if (minutes < 10) minutes = '0' + minutes;
+        clock.children[1].innerHTML = minutes;
+
+        let seconds = date.getSeconds();
+        if (seconds < 10) seconds = '0' + seconds;
+        clock.children[2].innerHTML = seconds;
+
+    }
+
+    let timerId;
+
+    function clockStart() { // запустить часы
+        timerId = setInterval(update, 1000);
+        update(); // (*)
+    }
+
+    function clockStop() {
+        clearInterval(timerId);
+        timerId = null;
+    }
+
+    // document.body.style.backgroundColor = prompt('background color?', 'green');
+
+    // если мы запустим этот код, <body> "мигнёт"
+    document.body.style.display = "none"; // скрыть
+
+    setTimeout(() => document.body.style.display = "", 1000); // возврат к нормальному состоянию     
+
+    document.body.style.margin = '10px';
+    alert(document.body.style.margin); // 20px
+
+    // alert(document.body.style.marginTop); // 20px
+    // alert(document.body.style.marginLeft); // 20px   
+
+
+
+
+
+  </script>
+
+</body>
+</html>

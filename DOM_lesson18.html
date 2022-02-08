@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+     
+</style>
+<body>
+    <form name="reg">
+        <p><input name="user" value='text'></p>
+        <p><input name="sex" type='radio' checked>Male
+            <input name="sex" type='radio' >Female</p>
+        <p>City
+            <select name="city">
+                <option>Moscow</option>
+                <option>Piter</option>
+                <option>Novosibirsk</option>
+            </select>
+        </p>
+        <p>I agree <input name='agree' type='checkbox'/></p>
+        <p><textarea name='about' rows='10' cols='30'>About me</textarea></p>
+        <p><input type="submit" name="submit"></p>    
+    </form>
+
+    <p onclick="sendForm()">Отправить форму</p>
+   
+    <script>
+        let frm = document.forms[0];
+
+        // Возвращает введеное в форму значение после потери фокуса. Нужная вещь!!!
+        frm.user.onchange = function() {
+            console.log(frm.user.value);   
+        }
+        // Получает значение радиобатонов и чекбоксов сразу!
+        frm.sex[0].onchange = function() {
+            console.log('Первый батон М - ' + frm.sex[0].checked);
+        }
+        frm.sex[1].onchange = function() {
+            console.log('Второй батон Ж - ' + frm.sex[1].checked);
+        }
+
+        frm.agree.onchange = function() {
+            console.log('Согласие - ' + frm.agree.checked);
+        }
+
+        // Для выпадашки тоже - тут дает индекс, а не value
+        frm.city.onchange = function() {
+            console.log('Город № ' + frm.city.selectedIndex);
+        }
+
+        // input - отследивает ввод в реальном времени
+        frm.user.oninput = function() {
+            console.log(frm.user.value);
+        }
+        
+        // Отслеживание копипасты
+        frm.user.oncut = function(event) {
+            console.log('Вырезал!')
+        }
+        frm.user.oncopy = function(event) {
+            console.log('Скопировал!')
+            // запретим копирование в этом окне. Можно и на вставку и тд.
+            event.preventDefault();
+        }
+        frm.user.onpaste = function(event) {
+            console.log('Вставил!')
+        }
+
+        // сабмит для существующей формы
+        frm.onsubmit = function(event) {
+            if(!frm.user.value) {
+                event.preventDefault();
+                alert('Поле пустое!');
+            }
+        }
+
+        // сабмит для созданной динамически формы (разобраться!)
+        function sendForm() {
+            let form = document.createElement('form');
+            form.method = 'GET';
+            form.innerHTML = '<input name="q" value="test">';
+            document.body.append(form);
+            form.submit();
+            console.log(form.innerHTML);
+        }
+
+    </script>
+
+
+</body>
+</html>       

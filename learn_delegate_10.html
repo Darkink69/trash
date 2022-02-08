@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="messages.css">
+</head>      
+<body>
+    <style>
+        #example {
+            width: 300px;
+            height: 200px;
+            border: 25px solid #E8C48F;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        #field {
+            width: 200px;
+            height: 150;
+            border: 10px groove black;
+            position: relative;
+            background-color: #00FF00;
+            overflow: hidden;
+        }
+
+        #ball {
+            position: absolute;
+            left: 0; /* по отношению к ближайшему расположенному предку (поле) */
+            top: 0;
+            /* width: 40px;
+            height: 40px; */
+            transition: 1s all; CSS-анимация для значений left/top делает передвижение мяча плавным
+        }    
+    }
+
+    </style>
+
+    Счётчик: <input id="count" type="button" value="1" data-counter>
+    Ещё счётчик: <input type="button" value="2" data-counter>
+    <br><br>
+
+    <button data-toggle-id="subscribe-mail">
+        Показать форму подписки
+      </button>
+      
+      <form id="subscribe-mail" hidden>
+        Ваша почта: <input type="email">
+      </form>
+
+   
+
+  <script>
+        document.addEventListener('click', function(event) {
+            let id2 = document.getElementById('count');
+            console.log(event);
+            console.log(event.layerX);
+            if (event.layerX > 500) {
+                alert(event.layerX);
+            }
+
+            if (event.target.dataset.counter != undefined) { // если есть атрибут...
+            event.target.value++;
+            }
+
+
+
+            let id = event.target.dataset.toggleId;
+            if (!id) return;
+
+            let elem = document.getElementById(id);
+            
+            // показать-скрыть
+            elem.hidden = !elem.hidden;
+
+        });
+
+   
+
+  </script>
+
+</body>
+</html>

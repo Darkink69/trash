@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Шаблон страницы DOM 5</title>  
+</head>
+<style>
+    td[data-cell-red='#CC0000'] {
+        background-color: #CC0000;
+    }
+    td[data-cell-red='lightRed'] {
+        background-color: hotpink;
+    }
+</style>
+<body>
+
+    <table>
+        <tr>
+            <td data-cell-red="#CC0000">1</td>
+            <td data-cell-blue="#0000CC">2</td>
+            <td data-cell-red="#CC0000">3</td>
+            <td data-cell-blue="#0000CC">4</td>
+        </tr>
+        <tr>
+            <td data-cell-red="#0000CC">5</td>
+            <td data-cell-blue="#CC0000">6</td>
+            <td data-cell-red="#CC0000">7</td>
+            <td data-cell-blue="#0000CC">8</td>
+        </tr>
+    </table>
+    
+    <div id='comm' dddd='значение'>Сообщения</div> 
+    <input id='input' type='checkbox' checked>
+    
+    <script>
+        let body = document.body;
+        body.myStyle = {
+            color: 'red',
+            fontSize: 20
+        };
+        console.log(body.myStyle.fontSize);
+        
+        console.dir(body); // все свойства и методы объекта body
+
+
+        // 'dddd' - нестандартное свойство, только текст
+        let div = document.getElementById('comm');
+        console.log(div.getAttribute('dddd')) // получаем значение нестандартного атрибута
+        div.setAttribute('dddd', 'новое занечение'); // меняем его значение
+        console.log(div.getAttribute('dddd'));
+        
+        let inp = document.getElementById('input');
+        console.log(typeof inp.checked);
+
+
+
+        let flSkip = false;
+        for (let cell of document.querySelectorAll('[data-cell-red]')) {
+            if (!flSkip) cell.dataset.cellRed = 'lightRed';
+            flSkip = !flSkip; // чередуем через 1
+        }
+    </script>
+
+
+</body>
+</html>       

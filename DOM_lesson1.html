@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Шаблон страницы DOM</title>  
+</head>
+<body>
+    <p>Абзац</p>
+
+    <div id='div_id'>
+        <p>Текст внутри блока div</p>
+    </div>
+    <ul>
+        <li><b>Элемент списка</b></li>
+    </ul>
+
+
+    <ul>
+        <li>Солнце</li>
+        <li>Меркурий</li>
+        <li>Венера</li>
+    </ul>
+    <p>Звезды:</p>
+    <ol>
+        <li>Сириус</li>
+        <li>Альдебаран</li>
+        <li>Ригель</li>
+    </ol>
+
+    <h1>О звездах</h1>
+    <div class="content-table">
+        <ui class="star-list">
+            <li class="star">О сириусе</li>
+            <li class="star">Об Альдебаране</li>
+            <li class="contact">Обратная связь</li>
+        </ui>
+    </div>
+
+    <table id="table_1">
+        <tr>
+            <td>один</td><td>два</td>
+        </tr>
+    </table>
+    <script>
+        for (let child of document.body.childNodes) {
+            console.log(child);
+        }
+
+        let html = document.documentElement;
+        let first = html.firstChild;
+        let last = html.lastChild;
+        console.log(last);
+        console.log( html.hasChildNodes() ); // есть ли дочерние у этого элемента (тру)
+
+        // переход по соседям (братьям), например хэд и боди
+        console.log(document.head.nextSibling);
+        console.log(document.head.previousSibling);
+
+        // кто родитель?
+        console.log(document.body.parentNode);
+
+        // взять содержимое ячейки из таблицы
+        console.log(table_1.rows[0].cells[1].innerHTML);
+
+        //обратиться к элементу по id
+        console.log( document.getElementById('div_id'));
+
+        //Выбираем селекторы одного типа
+        let list = document.querySelectorAll('ul > li:first-child'); // берем только первый
+        for (let i of list)
+            console.log(i);
+
+        
+            
+        // Ищем по селекторам
+    let list2 = document.querySelectorAll('ul.stars-list > li');
+    for (let i of list2) {
+        if (i.matches('li.star')) console.log(i + '!!!!');
+    }
+
+
+    </script>
+
+
+</body>
+</html>       

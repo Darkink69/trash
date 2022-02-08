@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+      .error {background: #cc0000;}
+</style>
+<body>
+    <div id="block" tabindex="1" style="height: 50px; background: #88d8b9;"></div>
+    <form name="reg">
+        <p><input name="user" value='text'></p>
+        <p><input name="sex" type='radio' checked>Male
+            <input name="sex" type='radio' >Female</p>
+        <p>City
+            <select name="city">
+                <option>Moscow</option>
+                <option>Piter</option>
+                <option>Novosibirsk</option>
+            </select>
+        </p>
+        <p>I agree <input name='agree' type='checkbox'/></p>
+        <p><textarea name='about' rows='10' cols='30'>About me</textarea></p>
+        <p><input type="submit" name="submit"></p>    
+    </form>
+   
+    <script>
+        let frm = document.forms[0];
+        frm.user.onfocus = function(event) {
+            console.log('Получаем фокус');
+            frm.user.classList.remove('error');
+        };
+
+        // делаем красным, если присутствует символ #
+        frm.user.onblur = function(event) {
+            console.log('Теряем фокус');
+            if(frm.user.value.includes('#'))
+                frm.user.classList.add('error');
+            else frm.user.classList.remove('error');
+        };
+
+        frm.addEventListener('focusin', function() {
+            console.log('form: фокус ин');
+        });
+
+        // определяем на чем фокус
+        let active = document.activeElement;
+        console.log(active);
+
+        // фокус работает не на все, но можно принудительно добавить
+        // добавим фокус на див (пограммно повторно)
+        block.onfocus = function(event) {
+            console.log('Фокус на диве!');
+        }
+
+    </script>
+
+
+</body>
+</html>       

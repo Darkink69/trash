@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+</head>
+<body>
+    <style>
+        .test {
+            background-color: cadetblue;
+        }
+        
+    </style>
+
+    <div id="div" class="test">Hello!</div>
+    dfjuhgiusrheiuesrh
+
+
+  <script>
+    document.body.classList.add('article');
+    document.body.classList.add('article2');
+    console.log(document.body.classList.contains('article'));
+
+    document.getElementById('div').style.backgroundColor = 'blue';
+    console.log(document.getElementById('div'));
+    document.getElementsByClassName('test')[0].style.backgroundColor = '#DAEFF2';
+
+    //получаем свойство стиля нашего дива
+    console.log(getComputedStyle(document.getElementById('div')).backgroundColor);
+    setTimeout(() => document.getElementById('div').style.display = "none", 3000);
+
+    // если мы запустим этот код, <body> "мигнёт"
+    // document.body.style.display = "none"; // скрыть
+
+    // setTimeout(() => document.body.style.display = "", 1000); // возврат к нормальному состоянию     
+
+    // document.body.style.margin = '10px';
+    // alert(document.body.style.margin); // 20px
+
+    // alert(document.body.style.marginTop); // 20px
+    // alert(document.body.style.marginLeft); // 20px   
+
+
+
+
+
+  </script>
+
+</body>
+</html>

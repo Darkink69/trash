@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Шаблон страницы DOM</title>  
+</head>
+<body><! -- комент --><h1>Заоловок страницы</h1>
+    <div id='comm2'></div>
+    <div id='comm3'>Мигающий текст</div>
+    
+    <script>
+        // Определяем принадлежность
+        console.log(document.body instanceof HTMLBodyElement); // true
+        console.log(document.body instanceof HTMLElement); // true
+        console.log(document.body instanceof Element); // true
+        console.log(document.body instanceof Text); // false
+        console.dir(document.body);
+        console.log(document.body.nodeName);
+
+        let h1 = document.body.firstChild.nextSibling;
+        console.log(h1.innerHTML);
+        h1.innerHTML = 'Измененный <u>заголовок</u>'
+        h1.innerHTML += ' и еще добавим <h5>текста!</h5>'
+        //h1.outerHTML = 'Меняем опять';
+        let comm = document.body.firstChild;
+        console.log(comm.data);
+        comm.data = '123'
+        console.log(comm.data);
+        
+
+        let msg = prompt('Ваш комментарий:', '');
+        //comm2.textContent = msg; 
+        // Добавит в код конструкцию /script>!!!! пока непонятно..     
+        comm2.innerHTML = msg;   
+        
+        let comm3 = document.getElementById('comm3');
+        comm3.hidden = true;
+        setInterval(() => comm3.hidden = !comm3.hidden, 500);
+
+
+        console.log(document.body.textContent);
+     
+    </script>
+
+
+</body>
+</html>       

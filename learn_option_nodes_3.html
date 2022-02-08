@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title id="123">DkЛлоаощщщщщв!</title>
+
+</head>
+<body>
+    <p>Параграф</p>
+    <div>DIV</div>
+  
+
+ 
+      
+      <script>
+          let hu = document.getElementById('123').innerHTML;
+          hu = 'dskjfghdfkjghdkfjghdfkj!';
+          console.log(hu);
+          console.log(document.body.tagName);
+
+          document.body.innerHTML = '<b>Новый BODY!</b>'; // заменяем содержимое
+          document.getElementById('123').innerHTML = 'kjdbgkjdfbgkjdfbgkjdfbgkjdfbgkdj@@@@@'
+
+      </script>
+
+    <div>Привет, мир!</div>
+    Привет, шутники!
+
+    <div id="news">
+        <h1>Срочно в номер!</h1>
+        <p>Марсиане атаковали человечество!</p>
+      </div>
+
+      <div>Оба тега DIV внизу невидимы</div>
+
+      <div hidden>С атрибутом "hidden"</div>
+      
+      <div id="elem">С назначенным JavaScript свойством "hidden"</div>  
+      <div id="elem2">Мигающий элемент</div>
+      <input type="text" id="elem3" value="значение">
+
+
+      <ul>
+        <li>Животные
+          <ul>
+            <li>Млекопитающие
+              <ul>
+                <li>Коровы</li>
+                <li>Ослы</li>
+                <li>Собаки</li>
+                <li>Тигры</li>
+              </ul>
+            </li>
+            <li>Другие
+              <ul>
+                <li>Змеи</li>
+                <li>Птицы</li>
+                <li>Ящерицы</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Рыбы
+          <ul>
+            <li>Аквариумные
+              <ul>
+                <li>Гуппи</li>
+                <li>Рыба-ангел</li>
+              </ul>
+            </li>
+            <li>Морские
+              <ul>
+                <li>Морская форель</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    <script>
+        console.log(document.body.lastChild.previousSibling.data);
+        console.log(news.textContent)
+        elem.hidden = true;
+
+        // мигающий текст )
+        setInterval(() => elem2.hidden = !elem2.hidden, 1000);
+        console.log(elem3.type); // "text"
+        console.log(elem3.id); // "elem"
+        console.log(elem3.value); // значение
+
+        li = document.querySelectorAll('li');
+        console.log(li.length);
+        for(let i of li) {
+            console.log(i.firstChild.data);
+        }
+
+    </script>
+</body>
+</html>

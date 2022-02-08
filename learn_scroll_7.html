@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+    <style>
+        #example {
+            width: 300px;
+            height: 200px;
+            border: 25px solid #E8C48F;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        #field {
+            width: 200px;
+            border: 3px groove black;
+            background-color: #00FF00;
+            position: relative;
+        }
+
+        #ball {
+            position: absolute;
+            left: 60px;
+            top: 20px;
+            width: 100px;
+            height: 90px;
+    }
+
+    </style>
+
+    <div id="example">
+        В иллюстрации выше намеренно продемонстрирован самый сложный и полный случай, когда у элемента есть ещё и полоса прокрутки. Некоторые браузеры (не все) отбирают место для неё, забирая его у области, отведённой для содержимого (помечена как «content width» выше).
+
+Таким образом, без учёта полосы прокрутки ширина области содержимого (content width) будет 300px, но если предположить, что ширина полосы прокрутки равна 16px (её точное значение зависит от устройства и браузера), тогда остаётся только 300 - 16 = 284px, и мы должны это учитывать. Вот почему примеры в этой главе даны с полосой прокрутки. Без неё некоторые вычисления будут проще.
+    </div> 
+
+    <!-- <main style="position: relative" id="main">
+        <article>
+          <div id="example" style="position: absolute; left: 180px; top: 80px">...</div>
+        </article>
+    </main> -->
+
+    <div id="field">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+  <script>
+        console.log(example.scrollTop);
+        example.scrollTop += 50;
+        console.log(example.scrollTop);
+        console.log(example.scrollHeight - example.scrollTop);
+        // распахнуть элемент на всю высоту
+        // example.style.height = `${example.scrollHeight}px`;
+
+        let elem = document.body;
+        // console.log(getComputedStyle(elem))
+
+        // двигаем мячик по полю
+        let ball = document.getElementById('ball');
+        ball.style.left = 30 + 'px';
+        ball.style.boxSizing = 100 + 'px';
+        
+        console.log(getComputedStyle(ball).size);
+        console.log(getComputedStyle(ball));
+
+    
+
+  </script>
+
+</body>
+</html>

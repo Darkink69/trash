@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="messages.css">
+</head>      
+<body>
+    <style>
+        #example {
+            width: 300px;
+            height: 200px;
+            border: 25px solid #E8C48F;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        #field {
+            width: 200px;
+            height: 150;
+            border: 10px groove black;
+            position: relative;
+            background-color: #00FF00;
+            overflow: hidden;
+        }
+
+        #ball {
+            position: absolute;
+            left: 0; /* по отношению к ближайшему расположенному предку (поле) */
+            top: 0;
+            /* width: 40px;
+            height: 40px; */
+            transition: 1s all; CSS-анимация для значений left/top делает передвижение мяча плавным
+        }    
+    }
+
+    </style>
+    <input value="Нажми меня" onclick="this.hidden=true" type="button" id="butt">
+    <input type="button" onclick="countRabbits()" value="Считать кроликов!">
+    <button onclick="alert(this.innerHTML)">Не нажимай ни за что!!!</button>
+    <input id="elem" type="button" value="Нажми меня"/>
+    <div id="text">Text</div>
+
+    <body style="height:2000px">
+
+        Нажмите на поле для перемещения мяча.
+        <br> Мяч не должен выходить за границы поля.
+      
+      
+        <div id="field">
+          <img src="https://ru.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+          . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        </div>
+
+        Код кнопки (возможно вам нужно будет изменить CSS):
+        <button id="button" class="remove-button">[x]</button>
+
+        <div>
+            <div class="pane">
+            <h3>Лошадь</h3>
+            <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+            </div>
+            <div class="pane">
+            <h3>Осёл</h3>
+            <p>Домашний осёл (лат. Equus asinus asinus), или ишак, — одомашненный подвид дикого осла (Equus asinus), сыгравший важную историческую роль в развитии хозяйства и культуры человека и по-прежнему широко в хозяйстве многих развивающихся стран.</p>
+            </div>
+            <div class="pane">
+            <h3>Кошка</h3>
+            <p>Кошка, или домашняя кошка (лат. Felis silvestris catus), — домашнее животное, одно из наиболее популярных(наряду с собакой) «животных-компаньонов». Являясь одиночным охотником на грызунов и других мелких животных, кошка — социальное животное, использующее для общения широкий диапазон звуковых сигналов.</p>
+            </div>
+        </div>
+
+
+        <button class="arrow">⇦</button>
+        <button class="arrow">⇨</button>
+      
+      
+        <ul>
+          <li><img src="https://ru.js.cx/carousel/1.png"></li>
+          <li><img src="https://ru.js.cx/carousel/2.png"></li>
+          <li><img src="https://ru.js.cx/carousel/3.png"></li>
+          <li><img src="https://ru.js.cx/carousel/4.png"></li>
+          <li><img src="https://ru.js.cx/carousel/5.png"></li>
+          <li><img src="https://ru.js.cx/carousel/6.png"></li>
+          <li><img src="https://ru.js.cx/carousel/7.png"></li>
+          <li><img src="https://ru.js.cx/carousel/8.png"></li>
+          <li><img src="https://ru.js.cx/carousel/9.png"></li>
+          <li><img src="https://ru.js.cx/carousel/10.png"></li>
+        </ul>
+      
+
+
+
+   
+
+  <script>
+        // function countRabbits() {
+        //     for(let i=1; i<=3; i++) {
+        //     console.log("Кролик номер " + i);
+        //     }
+        // }
+
+        // function handler1() {
+        //     alert('Спасибо!');
+        // };
+
+        // function handler2() {
+        //     alert('Спасибо ещё раз!');
+        // }
+
+        // elem.onclick = () => alert("Привет");
+        // elem.addEventListener("click", handler1); // Спасибо!
+        // elem.addEventListener("click", handler2); // Спасибо ещё раз!
+
+        // elem.onclick = function(event) {
+        //     // вывести тип события, элемент и координаты клика
+        //     alert(event.type + " на " + event.currentTarget);
+        //     alert("Координаты: " + event.clientX + ":" + event.clientY);
+            // text.remove();
+            // document.getElementById('elem').onclick = function() {
+            //     document.getElementById('text').hidden = true;
+            // }
+            // console.log(event);
+        // };
+
+        // "берем" мяч
+        field.onmouseover = function(event) {
+            console.log("Координаты: " + event.clientX + ":" + event.clientY);
+
+            let fieldCoords = this.getBoundingClientRect();
+            console.log(fieldCoords);
+            
+                  // мяч имеет абсолютное позиционирование (position:absolute), поле - относительное (position:relative)
+            // таким образом, координаты мяча рассчитываются относительно внутреннего, верхнего левого угла поля
+            let ballCoords = {
+                top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
+                left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
+            };
+            console.log(ballCoords);
+
+
+            // document.getElementById('ball').hidden = true;
+
+            // ball.style.top = event.clientX + 'px'
+            // ball.style.left = event.clientY + 'px'
+
+            // запрещаем пересекать верхнюю границу поля
+            if (ballCoords.top < 0) ballCoords.top = 0;
+
+            // запрещаем пересекать левую границу поля
+            if (ballCoords.left < 0) ballCoords.left = 0;
+
+
+            // // запрещаем пересекать правую границу поля
+            if (ballCoords.left + ball.clientWidth > field.clientWidth) {
+            ballCoords.left = field.clientWidth - ball.clientWidth;
+            }
+
+            // запрещаем пересекать нижнюю границу поля
+            if (ballCoords.top + ball.clientHeight > field.clientHeight) {
+            ballCoords.top = field.clientHeight - ball.clientHeight;
+            }
+
+            ball.style.left = ballCoords.left + 'px';
+            ball.style.top = ballCoords.top + 'px';
+        };
+
+        let panes = document.querySelectorAll('.pane');
+        console.log(panes);
+
+        let buttonCoords = button.getBoundingClientRect();
+        console.log(buttonCoords);
+        button.style.top = 300 + 'px';
+        button.style.right = 250 + 'px';
+        button.onclick = () => ball.remove();
+
+        for (let pane of panes) {
+            pane.insertAdjacentHTML('afterbegin', '<button class="remove-button">[x]</button>')
+            pane.firstChild.onclick = () => pane.remove();
+            
+        }
+      
+
+  </script>
+
+</body>
+</html>

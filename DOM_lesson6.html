@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+    .msg {
+        width: 400px;
+        margin: 0 auto;
+        text-align: center;
+        background: cornflowerblue;
+        padding: 5px;
+        border-radius: 5px;
+        color: #eee;
+        font-size: 24px;
+    }
+   
+   .txt {
+       color: crimson;
+       font-size: 30px;
+       font-weight: 1000;
+   }
+</style>
+<body>
+    <h1>Учимся считать</h1>
+    <ul class="list">
+        <li>Один</li>
+        <li>Два</li>
+        <li>Три</li>
+    </ul>
+
+    <table border=1 cellpadding='10'>
+        <tr><td>Солнце</td><td>Звезда</td></tr>
+        <tr><td>Меркурий</td><td>Планета</td></tr>
+    </table>
+
+   <!-- div class="msg">Супер интересный текст!</div> --> 
+    
+    <script>
+        // сами создаем квадратик с текстом
+       let div = document.createElement('div');
+       div.className = 'msg';
+       div.innerHTML = 'Какой-то текст';
+       document.body.prepend(div);
+
+        // Добавляем текст до или после узла ul
+       let list = document.querySelector('ul');
+       list.before('Перед');
+       list.after('После');
+
+       // Заменяем весь список
+    //    list.replaceWith(document.createElement('hr'),
+    //    'замена',
+    //    document.createElement('br'));
+
+       // Влезаем в готовый список и добавляем до или после
+       let li_1 = document.createElement('li');
+       li_1.innerHTML = 'Нуль';
+       list.prepend(li_1);
+
+       let li_2 = document.createElement('li');
+       li_2.innerHTML = 'CTo';
+       list.append(li_2);
+
+       // Находим 1й элемент в списке, потом в первое вставляем весь список и после последним 1й элемент
+    //    let li2 = document.querySelector('ul > li:child');
+    //    let list2 = document.querySelector('ul');
+    //    list2.append(li2);
+
+
+       // Добавляем текстовые элементы сразу с тегами около и в список
+       let list8 = document.querySelector('ul'); // находим список
+        list8.insertAdjacentHTML('beforebegin', '<p>Начало списка<hr>'); // hr - это линия
+        list8.insertAdjacentHTML('afterend', '<hr><p>Конец списка');
+        list8.insertAdjacentHTML('afterbegin', '<li>Цифра1');
+        list8.insertAdjacentHTML('beforeend', '<li>Цифра2');
+
+        let sq = document.querySelector('h1');
+        let h4 = document.createElement('h4');
+        h4.className = 'txt';
+        h4.innerHTML = 'УРА!!';
+        sq.appendChild(h4);   
+        
+        // Удаляем элементы списка по одному с задержкой
+        let idRemove = setInterval(function() {
+            let li_d = document.querySelector('ul.list > li:last-child');
+            if (li_d === null) {
+                clearInterval(idRemove);
+                document.write('<p>Специальная строка, перезаписывает все хтмл');
+                //alert('Список удален');
+            }
+            else li_d.remove();
+        }, 500);
+
+
+        // Клонирование строки
+        let t = document.querySelector('table');
+        let r = document.querySelector('table > tbody > tr:last-child');
+
+        let row = r.cloneNode(true);
+        row.firstChild.innerHTML = 'Венера';
+        t.appendChild(row);
+        
+        // специальная вставка один раз (устарела вроде как)
+        document.write('<p>Специальная строка');
+    </script>
+
+
+</body>
+</html>       

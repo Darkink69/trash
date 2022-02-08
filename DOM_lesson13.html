@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+    #main_menu {margin: 10px; 
+    padding: 0; 
+    list-style: none;
+    font-size: 24px;
+    width: 200px;
+    background: #eee;
+    cursor: pointer;
+    }
+    #main_menu li {margin-bottom: 10px; padding: 5px;}
+    #main_menu li:hover {background: #ff4ef5;}
+
+    #main_menu2 {margin: 10px; 
+    padding: 0; 
+    list-style: none;
+    font-size: 24px;
+    width: 200px;
+    background: #eee;
+    cursor: pointer;
+    }
+    #main_menu2 li {margin-bottom: 10px; padding: 5px;}
+    #main_menu2 li:hover {background: #639ce6;}
+
+</style>
+<body>
+    <h1>Это будет делегирование событий</h1>
+    <ul id="main_menu">
+        <li>Первый пунктик</li>
+        <li>второй пунктик</li>
+        <li>еще пунктик</li>
+        <li>последний пунктик</li>
+    </ul>
+
+    <h1>Уже настоящее меню</h1>
+    <p>
+        <input type="button" data-toggle-id='main_menu2' value="Скрыть">
+        <a href="DOM_lesson13.html" data-toggle-id='main_menu2'>Скрыть меню тоже</a>
+    </p>
+    <ul id="main_menu2">
+        <li data-command='open'>Открыть</li>
+        <li data-command='save'>Сохранить</li>
+        <li data-command='draw'>Рисовать</li>
+        <li data-command='edit'>Редактировать</li>
+    </ul>
+
+   
+    <script>
+        // меню!! возвращает по клику текст в элементе. С проверкой если "мимо"
+        main_menu.addEventListener('click', function(event) {
+            let li = event.target.closest('li');
+            if (li == null) return;
+            console.log(li.innerHTML);
+        });
+
+        // Снова меню, но уже настоящее, гибкое
+        document.addEventListener('click', function(event) {
+            let id = event.target.dataset.toggleId;
+            if(!id) return;
+            let elem = document.getElementById(id);
+            if(!elem) return;
+            elem.hidden = !elem.hidden;
+        });
+
+        // список работающих пунктов и действие
+        let menuActs = {
+            open() {alert('Опен...');},
+            save() {alert('Сейв...');},
+        };
+
+        main_menu2.addEventListener('click', function(event) {
+            let li = event.target.closest('li');
+            if (li == null) return;
+
+            let act = li.dataset.command;
+            if (act && menuActs[act] !== undefined) menuActs[act]();
+        });
+
+        //Скроем меню строкой
+        let a = document.querySelector('a');
+        a.onclick = function(event) {
+            event.preventDefault();
+        }    
+
+        //скроем стандартное меню по правой кнопке
+        // определяем, где ткнуни просто на странице, а где на пункте меню
+        document.addEventListener('contextmenu', function(event) {
+            if (event.defaultPrevented) return;
+            event.preventDefault();
+            console.log('Меню всего документа')
+        });
+
+        main_menu2.oncontextmenu = function(event) {
+            console.log('Меню только пункта меню');
+            event.preventDefault();
+        }
+    </script>
+
+
+</body>
+</html>       

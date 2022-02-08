@@ -1,0 +1,104 @@
+<html>
+<head>
+    <title id="title">Четыре!</title>
+
+</head>
+<style>
+    /* стили зависят от пользовательского атрибута "order-state" */
+    .order[order-state="new"] {
+      color: green;
+    }
+  
+    .order[order-state="pending"] {
+      color: blue;
+    }
+  
+    .order[order-state="canceled"] {
+      color: red;
+    }
+</style>
+
+<body id="body" type="...">
+    <input class="order" order-state="new" id="input" type="text"><br>
+    <input id='in_check' type="checkbox" checked>
+
+    <div id="div" style="color:red;font-size:120%">Hello</div>
+
+    <a id="a" href="#hello">link</a>
+
+    <!-- пометить div, чтобы показать здесь поле "name" -->
+    <div show-info="name">23535</div>
+    <!-- а здесь возраст "age" -->
+    <div class="order" order-state="new" show-info="age">счмичсми</div>
+
+    <div class="order" order-state="new">
+        A new order.
+      </div>
+      
+      <div class="order" order-state="pending">
+        A pending order.
+      </div>
+      
+      <div class="order" order-state="canceled">
+        A canceled order.
+      </div>
+
+      <div data-widget-name="menu">Choose the genre</div>
+
+    <script>
+      console.log(input.type); // text
+      console.log(body.type); // undefined: DOM-свойство не создалось, потому что оно нестандартное, у body такого нет
+
+      let elem = document.body;
+      elem.setAttribute('type', '12421341234');
+      console.log(elem.getAttribute('type'));
+
+      // Перебираем коллекцию attributes, в ней все атрибуты элемента, включая нестандартные
+      for(let atrr of elem.attributes) {
+        console.log(`${atrr.name} = ${atrr.value}`);
+      }
+      
+
+      let title = document.querySelector('title');
+      title.setAttribute('type', 'new');
+
+      console.log(title);
+
+      console.log(in_check.checked);
+
+      console.log(div.getAttribute('style'));
+      console.log(div.style[0]);
+      console.log(div.style.fontSize);
+
+      console.log(a.getAttribute('href'));
+      console.log(a.href);
+
+      //заполняем див скриптом
+      let user = {
+        name: "Pete",
+        age: 25,
+        t: 0
+        };
+      console.log(document.querySelectorAll('[show-info]')[0]);  
+
+      for(let div of document.querySelectorAll('[show-info]')) {
+          //вставляем в нужное поле
+          let field = div.getAttribute('show-info');
+          div.innerHTML = user[field];
+      }
+
+      // обращаемся к нестандартному атрибуту "data-...". Это чтобы случайно не попасть на стандартный атрибут 
+      console.log(document.body.dataset.LKHBLBHLEFBH);
+
+    //   console.log(order.dataset.orderState);
+
+    let elem2 = document.querySelectorAll('[data-widget-name]')[0].getAttribute('data-widget-name');
+    console.log(elem2);
+
+    </script>
+
+
+
+</body>
+
+</html>

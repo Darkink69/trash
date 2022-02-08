@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="menu.css">
+</head>      
+<body>
+    <style>
+        #example {
+            width: 300px;
+            height: 200px;
+            border: 25px solid #E8C48F;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        #field {
+            width: 200px;
+            height: 150;
+            border: 10px groove black;
+            position: relative;
+            background-color: #00FF00;
+            overflow: hidden;
+        }
+
+        #ball {
+            position: absolute;
+            left: 0; /* по отношению к ближайшему расположенному предку (поле) */
+            top: 0;
+            /* width: 40px;
+            height: 40px; */
+            transition: 1s all; CSS-анимация для значений left/top делает передвижение мяча плавным
+        }    
+
+        .tree span:hover {
+            font-weight: bold;
+        }
+
+        .tree span {
+            cursor: pointer;
+            background:greenyellow;
+        }
+
+        table {border: 1px solid black;
+        }
+        th, td {
+          border: 1px solid black;
+        }
+        th {
+          cursor: pointer;
+        }
+        th:hover {
+          background: yellowgreen;
+        }
+
+        td {
+          cursor: pointer;
+        }
+        td:hover {
+          background: #E8C48F;
+        }
+
+        .tooltip {
+          position: fixed;
+          padding: 10px 20px;
+          border: 1px solid #b3c9ce;
+          border-radius: 4px;
+          text-align: center;
+          font: italic 14px/1.3 sans-serif;
+          color: #333;
+          background: #fff;
+          box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+        }
+
+    </style>
+
+    <h1 id="elem">Привет из кода!</h1>
+
+    <pre id="rabbit">
+        |\   /|
+         \|_|/
+         /. .\
+        =\_Y_/=
+         {>o<}
+      </pre>
+      <button onclick="hide()">Hide()</button>
+   
+
+
+    <script>  
+          // ловим на document...
+        document.addEventListener("hello", function(event) { // (1)
+            alert("Привет от " + event.target.tagName); // Привет от H1
+        });
+
+        // ...запуск события на элементе!
+        // let event = new Event("hello", {bubbles: true}); // (2)
+        // elem.dispatchEvent(event);
+
+        // обработчик на document сработает и выведет сообщение.
+
+          // hide() будет вызван при щелчке на кнопке
+        function hide() {
+            let event = new CustomEvent("hide", {
+            cancelable: true // без этого флага preventDefault не сработает
+            });
+            if (!rabbit.dispatchEvent(event)) {
+            alert('Действие отменено обработчиком');
+            } else {
+            rabbit.hidden = true;
+            }
+        }
+
+        rabbit.addEventListener('hide', function(event) {
+            if (confirm("Вызвать preventDefault?")) {
+            event.preventDefault();
+            }
+        });
+     
+    </script>
+
+</body>
+</html>

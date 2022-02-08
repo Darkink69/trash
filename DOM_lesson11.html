@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Шаблон страницы DOM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">  
+</head>
+<style>
+    input {
+        transition: width 1s;
+        width: 200px;
+    }
+    .expand {width: 400px;}
+</style>
+<body>
+    <p><a id='link' href="#" onclick="showMessage(event)">Нажми, быстро!</a></p>
+    <p><input type='button' onclick="this.classList.toggle('expand')" value='Событие онклик!'></p> 
+    <script>
+        // Обрабатываем событие клика
+        let inp = document.querySelector('input');
+        //inp.onclick = showMessage; 
+        inp.addEventListener('transitionend', showMessage);
+        inp.addEventListener('click', function(event) {
+            console.log(event.clientX, event.clientY);
+            console.log('Событие: ' + event.type);
+            });
+
+        // Удаляем событие с кнопки
+        inp.removeEventListener('click', showMessage);
+        function showMessage(event) {
+            alert(event.currentTarget.tagName);
+        }
+
+    </script>
+
+
+</body>
+</html>       
