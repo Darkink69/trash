@@ -50,5 +50,6 @@ const fp = new Proxy(log, {
         console.log('...')
         return target.apply(thisArg, args).toUpperCase()
     }
+    
 })
 
